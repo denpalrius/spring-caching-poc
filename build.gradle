@@ -23,9 +23,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
 
+//    implementation 'net.sf.ehcache:ehcache:2.10.9.2'
     implementation 'org.ehcache:ehcache:3.8.1'
     implementation 'org.ehcache:ehcache-clustered:3.8.1'
-    implementation 'org.terracotta:terracotta-toolkit-runtime:4.3.10.2.18'
+//    implementation 'org.terracotta:terracotta-toolkit-runtime:4.3.10.2.18'
 
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'org.projectlombok:lombok:1.18.24'

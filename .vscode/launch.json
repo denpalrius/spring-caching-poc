@@ -1,15 +1,15 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Spring Boot-SpringEhcachePocApplication<spring-ehcache-poc>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.cachingpoc.cache.SpringEhcachePocApplication",
-            "projectName": "spring-ehcache-poc",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ]
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringEhcachePocApplication<spring-ehcache-poc>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.cachingpoc.cache.SpringEhcachePocApplication",
+      "projectName": "spring-ehcache-poc",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
 }

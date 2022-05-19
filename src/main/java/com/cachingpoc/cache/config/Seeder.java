@@ -29,13 +29,13 @@ public class Seeder {
     public List<Player> getPlayers() {
         List<Player> players = new ArrayList<>();
 
-        players.add(new Player("Dennis", "Tech", 11));
-        players.add(new Player("Vasu", "Tech", 10));
-        players.add(new Player("Emilio", "Tech", 7));
+        players.add(new Player("Dennis", "Street Bulls", 11));
+        players.add(new Player("Vasu", "Street Bulls", 10));
+        players.add(new Player("Emilio", "Street Bulls", 7));
 
-        players.add(new Player("Lionel Messi", "Red team", 10));
-        players.add(new Player("Emiliano Martínez", "Argentina", 1));
-        players.add(new Player("Julián Álvarez", "Argentina", 9));
+        players.add(new Player("Lionel Messi", "La Albiceleste", 10));
+        players.add(new Player("Emiliano Martínez", "La Albiceleste", 1));
+        players.add(new Player("Julián Álvarez", "La Albiceleste", 9));
 
         return players;
     }

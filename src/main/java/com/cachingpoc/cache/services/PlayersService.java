@@ -2,7 +2,11 @@ package com.cachingpoc.cache.services;
 
 import com.cachingpoc.cache.model.Player;
 import com.cachingpoc.cache.repositories.PlayersRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -10,23 +14,39 @@ import java.util.List;
 
 @Component
 public class PlayersService {
-
+    private static final Logger log = LogManager.getLogger(PlayersService.class);
     @Autowired
     PlayersRepository playersRepository;
+    @Autowired
+    private CacheManager cacheManager;
 
-    @Cacheable(value = "clustered-cache-players", key = "#p0", condition = "#p0!=null")
+    @Cacheable(value = "players-cache", key = "#p0", condition = "#p0!=null")
+//    @Cacheable(value = "playersCache", key = "#p0", condition = "#p0!=null")
     public Player getPlayer(String name) {
-        System.out.println("Retrieving from Database for name: " + name);
+        log.info("Retrieving from Database for name: " + name);
         Player player = playersRepository.findByName(name);
 
         return player;
     }
 
-    @Cacheable(value = "clustered-cache-players", keyGenerator = "customKeyGenerator")
+    @Cacheable(value = "tiered-cache", keyGenerator = "customKeyGenerator")
+//    @Cacheable(value = "myBigMemoryMaxStore", keyGenerator = "customKeyGenerator")
     public List<Player> getAllPlayers() {
-        System.out.println("Retrieving all players from Database");
+        log.info("Retrieving all players from Database");
         List<Player> players = playersRepository.findAll();
 
         return players;
+    }
+
+    public Boolean clearAllCaches() {
+        log.info("Clearing all caches");
+        cacheManager.getCacheNames()
+                .forEach(cacheName -> {
+                    Cache cache = cacheManager.getCache(cacheName);
+                    log.info(cacheName + " cache: " + cache.getNativeCache());
+                    cache.clear();
+                });
+
+        return true;
     }
 }
