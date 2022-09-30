@@ -1,8 +1,10 @@
 package com.cachingpoc.redis.config;
 
+import com.cachingpoc.redis.controllers.CarsController;
 import com.cachingpoc.redis.models.Car;
 import com.cachingpoc.redis.repositories.CarsRepository;
 import com.cachingpoc.redis.services.CacheService;
+import com.cachingpoc.shared.CustomKeyGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -31,7 +33,7 @@ public class Seeder {
         List<Car> newCars = carsRepository.saveAll(seedCars);
         log.info("Added {} cars to Hibernate DB", newCars.size());
 
-        cacheService.puInCache("cars", "all-cars", newCars);
+        cacheService.puInCache("cars", "carscontroller_getallcars", newCars);
         log.info("Added {} cars to Redis Cache", newCars.size());
 
     }

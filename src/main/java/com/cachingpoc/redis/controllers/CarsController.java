@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,6 +55,7 @@ public class CarsController {
 
     @PostMapping
     // TODO: Evict cache or update cache list
+    // TODO: Fix proper key name
     @Cacheable(value = "cars", key = "#p0", condition = "#p0!=null")
     public Car addCar(@RequestBody Car car) {
         Car newCar = carsRepository.save(car);
@@ -62,8 +64,9 @@ public class CarsController {
         return newCar;
     }
 
-    @CacheEvict(value = "cars", key = "#p0", beforeInvocation = true)
-    @CachePut(value = "poc-cache::cars", key = "#car.id")
+    @Caching(
+            put = {@CachePut(value = "cars", key = "#car.id")}, // not working
+            evict = {@CacheEvict(value = "cars", key = "#p0", beforeInvocation = true)})
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable Long id, @RequestBody Car car) {
         Optional<Car> existingCar = carsRepository.findById(id);
@@ -73,7 +76,9 @@ public class CarsController {
         return carsRepository.save(car);
     }
 
-    @CacheEvict(value = "cars", allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = "cars", keyGenerator = "customKeyGenerator"),
+            @CacheEvict(value = "cars", key = "#p0"),})
     @DeleteMapping("/{id}")
     public boolean deleteCar(@PathVariable Long id) {
         Optional<Car> existingCar = carsRepository.findById(id);
@@ -83,12 +88,6 @@ public class CarsController {
         return true;
     }
 
-    @CacheEvict(value = "cars", allEntries = true)
-    @GetMapping("/clear-all-caches")
-    public Object clealAllCaches() {
-        log.info("Cache clearing triggered...");
-        return null;
-    }
 
     @ExceptionHandler(value = CarNotFoundException.class)
     public ResponseEntity<Object> exception(CarNotFoundException exception) {

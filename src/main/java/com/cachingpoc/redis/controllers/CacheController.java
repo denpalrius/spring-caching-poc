@@ -3,7 +3,6 @@ package com.cachingpoc.redis.controllers;
 import com.cachingpoc.redis.services.CacheService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.cache.Cache;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ public class CacheController {
     }
 
     @GetMapping("clear-all-caches")
-    public List<String> clearAllCaches() {
+    public String clearAllCaches() {
         return cacheService.clearAllCaches();
     }
 }

@@ -11,7 +11,7 @@
     storage you want to use. This memory is invisible to the Java garbage
     collector, providing for gigabytes to terabytes of in-memory data without
     garbage collection pauses. -->
-    <cache name="myBigMemoryMaxStore"
+    <cache name="players-tc-cache"
            maxBytesLocalHeap="512M"
            maxBytesLocalOffHeap="8G">
 

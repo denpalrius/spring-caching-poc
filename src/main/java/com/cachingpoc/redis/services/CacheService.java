@@ -46,11 +46,12 @@ public class CacheService {
         return new ArrayList<>(cacheManager.getCacheNames());
     }
 
-    public List<String> clearAllCaches() {
-        List<String> cacheNamesResponse = this.getCacheNames();
-        for (String cacheName : cacheNamesResponse)
+    public String clearAllCaches() {
+        List<String> cacheNames = this.getCacheNames();
+        for (String cacheName : cacheNames)
             this.clearCache(cacheName);
-        return cacheNamesResponse;
+
+        return String.format("caches cleared: %s", cacheNames);
     }
 
 }

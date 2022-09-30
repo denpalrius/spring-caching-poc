@@ -1,4 +1,4 @@
-//package com.cachingpoc.cache.config;
+package com.cachingpoc.terracota.config;//package com.cachingpoc.cache.config;
 //
 //import com.cachingpoc.cache.model.Player;
 //import org.ehcache.Cache;
@@ -28,8 +28,9 @@
 //import java.util.List;
 //
 //@EnableJpaRepositories(basePackages = "com.cachingpoc.cache.repositories")
-//@Configuration
+//@Log4j2
 //@EnableCaching
+//@Configuration
 //public class ClusteredCacheConfig2 {
 //     private static final String CACHE_MANAGER_ALIAS = "clustered-cache-poc-manager";
 //    private static final String CLUSTERED_CACHE_PLAYERS_ALIAS = "players-cache";

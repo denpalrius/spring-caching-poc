@@ -1,6 +1,6 @@
-package com.cachingpoc.ehcache.repositories;
+package com.cachingpoc.terracota.repositories;
 
-import com.cachingpoc.ehcache.models.Player;
+import com.cachingpoc.terracota.models.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
