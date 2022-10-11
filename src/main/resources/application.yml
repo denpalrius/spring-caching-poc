@@ -1,0 +1,23 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      show_sql: true
+      format_sql: true
+
+  h2:
+    console:
+      enabled: true
+
+#  cache:
+#    type: redis
+
+  redis:
+    host: localhost
+    port: 6379
+
+hibernate:
+    globally_quoted_identifiers: true
