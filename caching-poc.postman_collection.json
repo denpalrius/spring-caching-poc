@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "ac114aea-dc8f-483b-9360-16fd2f67e481",
+		"name": "caching-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "80853"
+	},
+	"item": [
+		{
+			"name": "ehcache",
+			"item": [
+				{
+					"name": "All Players",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/players/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Player",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/players/Dennis",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"players",
+								"Dennis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Caches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/players/clear-all-caches",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"players",
+								"clear-all-caches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "redis-cache",
+			"item": [
+				{
+					"name": "cars",
+					"item": [
+						{
+							"name": "All cars",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/cars",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Single car",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/cars/2",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"cars",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create car",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\":\"KCF\",\n    \"make\":\"Peugeot\",\n    \"yom\":1972\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/cars",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update car",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"make\":\"Mercedes\",\n    \"yom\":\"1990\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/cars/2",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"cars",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete car",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"make\":\"Mercedes\",\n    \"yom\":\"1972\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/cars/1",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"cars",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cache-management",
+					"item": [
+						{
+							"name": "get-cache-names",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/redis-cache/get-cache-names",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"redis-cache",
+										"get-cache-names"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-planets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/redis-cache/get-planets/planet1",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"redis-cache",
+										"get-planets",
+										"planet1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put-in-cache",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Mercury\",\n    \"distanceFromSun\":35000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api}}/redis-cache/planet1",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"redis-cache",
+										"planet1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clear-cache",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/redis-cache/clear-cache/cars",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"redis-cache",
+										"clear-cache",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "clear-all-caches",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/redis-cache/clear-all-caches",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"redis-cache",
+										"clear-all-caches"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
