@@ -27,3 +27,4 @@ bin/**
 out/**
 
 rebel.xml
+dump.rdb
