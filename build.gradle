@@ -50,16 +50,11 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-cache:2.7.9'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.7.9'
-//    implementation 'org.springframework.data:spring-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-integration:2.7.9'
-//    implementation 'org.springframework.boot:spring-boot-starter-integration'
-//    implementation 'org.springframework.integration:spring-integration-core'
-    runtimeOnly 'org.springframework.integration:spring-integration-redis:6.0.3'
+    implementation 'org.springframework.integration:spring-integration-core'
+    implementation 'org.springframework.integration:spring-integration-redis'
 //    runtimeOnly 'org.springframework.integration:spring-integration-redis'
-//    implementation 'org.springframework.integration:spring-integration-redis'
     implementation 'io.lettuce:lettuce-core'
-//    implementation 'io.lettuce:lettuce-core:6.2.3.RELEASE'
-
 
     implementation 'net.sf.ehcache:ehcache:2.10.9.2'
     implementation 'org.ehcache:ehcache:3.10.0'

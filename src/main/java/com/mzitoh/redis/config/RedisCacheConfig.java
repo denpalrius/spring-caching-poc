@@ -13,6 +13,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.integration.redis.util.RedisLockRegistry;
+import org.springframework.integration.support.locks.ExpirableLockRegistry;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -24,6 +26,8 @@ import java.util.Map;
 @Configuration
 public class RedisCacheConfig {
     private final RedisProperties redisProperties;
+    private static final String LOCK_REGISTRY_REDIS_KEY = "MZITOH_REDIS_LOCK_KEY";
+    private static final Duration RELEASE_TIME_DURATION = Duration.ofSeconds(30);
 
     @Bean
     public CacheManager cacheManager() {
@@ -80,7 +84,12 @@ public class RedisCacheConfig {
         return template;
     }
 
-//    public void getStatistics() {
-//        getStatistics
-//    }
+    @Bean
+    public ExpirableLockRegistry lockRegistry() {
+        RedisLockRegistry redisLockRegistry = new RedisLockRegistry(
+                redisConnectionFactory(), LOCK_REGISTRY_REDIS_KEY, RELEASE_TIME_DURATION.toMillis());
+
+
+        return redisLockRegistry;
+    }
 }
